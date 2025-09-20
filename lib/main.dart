@@ -1,8 +1,11 @@
-//import 'package:buzbee/login.dart';
+import 'package:buzbee/complaint.dart';
+import 'package:buzbee/feedback.dart';
+import 'package:buzbee/login.dart';
 import 'package:buzbee/register.dart';
+import 'package:buzbee/searchbus.dart';
 import 'package:flutter/material.dart';
 
-void main() {
+void main() { 
   runApp(const MyApp());
 }
 
@@ -18,7 +21,7 @@ class MyApp extends StatelessWidget {
        
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: RegisterScreen(),
+      home: SearchbusScreen(),
     );
   }
 }
