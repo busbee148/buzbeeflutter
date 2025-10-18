@@ -5,6 +5,12 @@ import 'package:buzbee/register.dart';
 import 'package:buzbee/searchbus.dart';
 import 'package:buzbee/bookticket.dart';
 import 'package:buzbee/home.dart';
+import 'package:buzbee/viewbusstop.dart';
+import 'package:buzbee/fastestroute.dart';
+import 'package:buzbee/departurealert.dart';
+import 'package:buzbee/localtime.dart';
+import 'package:buzbee/profile.dart';
+import 'package:buzbee/editprofile.dart';
 import 'package:flutter/material.dart';
 
 void main() { 
@@ -12,6 +18,8 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
+  static var primaryColor=Colors.orangeAccent;  
+
   const MyApp({super.key});
 
   // This widget is the root of your application.
@@ -23,7 +31,7 @@ class MyApp extends StatelessWidget {
        
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: PassengerHomePage(),
+      home: ProfileScreen(),
     );
   }
 }
