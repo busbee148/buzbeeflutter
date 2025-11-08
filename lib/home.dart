@@ -1,3 +1,5 @@
+import 'package:buzbee/complaint.dart';
+import 'package:buzbee/feedback.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -50,7 +52,7 @@ class PassengerHomePage extends StatelessWidget {
                   context,
                   MaterialPageRoute(
                       builder: (_) =>
-                          const EmptyPage(title: "Register Complaint")),
+                          ComplaintScreen()),
                 );
               },
             ),
@@ -62,7 +64,7 @@ class PassengerHomePage extends StatelessWidget {
                   context,
                   MaterialPageRoute(
                       builder: (_) =>
-                          const EmptyPage(title: "Feedback & Ratings")),
+                          FeedbackScreen()),
                 );
               },
             ),

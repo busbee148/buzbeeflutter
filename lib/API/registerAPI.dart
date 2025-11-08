@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 
 Dio dio=Dio();
 int? LID;
-String baseurl='http://192.168.1.67:5000';
+String baseurl='http://192.168.1.59:5000';
 
 Future<void> register(data, context) async{
   Response res = await dio.post('$baseurl/PassangerView',data: data);
