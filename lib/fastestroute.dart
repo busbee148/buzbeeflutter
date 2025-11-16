@@ -179,7 +179,7 @@ class _FastestRouteScreenState extends State<FastestRouteScreen> {
             );
           },
           style: ElevatedButton.styleFrom(
-            backgroundColor: Colors.amber,
+            backgroundColor: MyApp.primaryColor,
             foregroundColor: Colors.white,
           ),
           child: const Text("Select"),

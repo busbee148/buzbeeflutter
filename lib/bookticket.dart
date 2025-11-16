@@ -1,3 +1,4 @@
+import 'package:buzbee/home.dart';
 import 'package:buzbee/qr.dart';
 import 'package:buzbee/upi.dart';
 import 'package:flutter/material.dart';
@@ -104,36 +105,108 @@ class _BookTicketScreenState extends State<BookTicketScreen> {
   }
 
   // Prompt for ticket count
+  // void _askTicketCountAndBook(String method) {
+  //   final controller = TextEditingController();
+  //   showDialog(
+  //     context: context,
+  //     builder: (_) => AlertDialog(
+  //       title: const Text("Number of Tickets"),
+  //       content: TextField(
+  //         controller: controller,
+  //         keyboardType: TextInputType.number,
+  //         decoration: const InputDecoration(hintText: "Enter number of tickets"),
+  //       ),
+  //       actions: [
+  //         TextButton(
+  //           onPressed: () {
+  //             final input = int.tryParse(controller.text.trim());
+  //             if (input == null || input <= 0) {
+  //               ScaffoldMessenger.of(context).showSnackBar(
+  //                 const SnackBar(content: Text("Enter a valid number")),
+  //               );
+  //               return;
+  //             }
+  //             Navigator.pop(context);
+  //             _bookTicket(method, input);
+  //           },
+  //           child: const Text("Continue"),
+  //         )
+  //       ],
+  //     ),
+  //   );
+  // }
   void _askTicketCountAndBook(String method) {
-    final controller = TextEditingController();
-    showDialog(
-      context: context,
-      builder: (_) => AlertDialog(
-        title: const Text("Number of Tickets"),
-        content: TextField(
-          controller: controller,
-          keyboardType: TextInputType.number,
-          decoration: const InputDecoration(hintText: "Enter number of tickets"),
+  final controller = TextEditingController();
+
+  showDialog(
+    context: context,
+    builder: (_) => AlertDialog(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(16),
+      ),
+      title: const Text(
+        "Number of Tickets",
+        style: TextStyle(
+          fontWeight: FontWeight.bold,
         ),
-        actions: [
-          TextButton(
-            onPressed: () {
-              final input = int.tryParse(controller.text.trim());
-              if (input == null || input <= 0) {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(content: Text("Enter a valid number")),
-                );
-                return;
-              }
-              Navigator.pop(context);
-              _bookTicket(method, input);
-            },
-            child: const Text("Continue"),
-          )
+      ),
+      content: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          const SizedBox(height: 10),
+          TextField(
+            controller: controller,
+            keyboardType: TextInputType.number,
+            decoration: InputDecoration(
+              hintText: "Enter number of tickets",
+              filled: true,
+              fillColor: Colors.grey[100],
+              contentPadding: const EdgeInsets.symmetric(
+                  horizontal: 16, vertical: 14),
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(12),
+                borderSide: BorderSide.none,
+              ),
+            ),
+          ),
         ],
       ),
-    );
-  }
+      actions: [
+        TextButton(
+          onPressed: () => Navigator.pop(context),
+          child: const Text(
+            "Cancel",
+            style: TextStyle(color: Colors.grey),
+          ),
+        ),
+        ElevatedButton(
+          style: ElevatedButton.styleFrom(
+            backgroundColor: MyApp.primaryColor,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(10),
+            ),
+          ),
+          onPressed: () {
+            final input = int.tryParse(controller.text.trim());
+
+            if (input == null || input <= 0) {
+              ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(
+                    content: Text("Enter a valid number")),
+              );
+              return;
+            }
+
+            Navigator.pop(context);
+            _bookTicket(method, input);
+          },
+          child: const Text("Continue"),
+        ),
+      ],
+    ),
+  );
+}
+
 
   // Book ticket logic
   void _bookTicket(String method, int count) {

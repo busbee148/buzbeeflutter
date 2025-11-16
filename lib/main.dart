@@ -18,7 +18,7 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  static var primaryColor=Colors.orangeAccent;  
+  static var primaryColor= Color(0xFFF07B11);  
 
   const MyApp({super.key});
 
@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
        
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: PassengerHomePage(),
+      home: LoginScreen(),
     );
   }
 }
