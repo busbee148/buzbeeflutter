@@ -43,7 +43,6 @@
 //     );
 //   }
 // }
-
 import 'package:buzbee/API/loginAPI.dart';
 import 'package:buzbee/register.dart';
 import 'package:flutter/material.dart';
@@ -60,6 +59,8 @@ class _LoginScreenState extends State<LoginScreen> {
   final TextEditingController passwordController = TextEditingController();
 
   static const primaryColor = Color(0xFFF07B11);
+
+  bool isPasswordVisible = false; // 👁 Toggle state
 
   @override
   Widget build(BuildContext context) {
@@ -109,6 +110,8 @@ class _LoginScreenState extends State<LoginScreen> {
                     Icons.person_outline,
                   ),
                   const SizedBox(height: 15),
+
+                  // Password field with toggle
                   _buildTextField(
                     "Password",
                     passwordController,
@@ -140,9 +143,10 @@ class _LoginScreenState extends State<LoginScreen> {
                       child: const Text(
                         "Login",
                         style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white),
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                        ),
                       ),
                     ),
                   ),
@@ -155,7 +159,8 @@ class _LoginScreenState extends State<LoginScreen> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => const RegisterScreen()),
+                          builder: (context) => const RegisterScreen(),
+                        ),
                       );
                     },
                     child: const Text(
@@ -178,13 +183,33 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   // 🧱 Reusable Text Field Widget
-  Widget _buildTextField(String hint, TextEditingController controller, IconData icon,
-      {bool isPassword = false}) {
+  Widget _buildTextField(
+    String hint,
+    TextEditingController controller,
+    IconData icon, {
+    bool isPassword = false,
+  }) {
     return TextFormField(
       controller: controller,
-      obscureText: isPassword,
+      obscureText: isPassword ? !isPasswordVisible : false,
       decoration: InputDecoration(
         prefixIcon: Icon(icon, color: primaryColor),
+
+        // 👁 Password visibility toggle
+        suffixIcon: isPassword
+            ? IconButton(
+                onPressed: () {
+                  setState(() {
+                    isPasswordVisible = !isPasswordVisible;
+                  });
+                },
+                icon: Icon(
+                  isPasswordVisible ? Icons.visibility : Icons.visibility_off,
+                  color: primaryColor,
+                ),
+              )
+            : null,
+
         hintText: hint,
         filled: true,
         fillColor: Colors.white,
