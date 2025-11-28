@@ -730,6 +730,7 @@ import 'package:buzbee/fastestroute.dart';
 import 'package:buzbee/feedback.dart';
 import 'package:buzbee/localtime.dart';
 import 'package:buzbee/profile.dart';
+import 'package:buzbee/searchbus.dart';
 import 'package:buzbee/upi.dart';
 import 'package:buzbee/viewbusstop.dart';
 import 'package:flutter/material.dart';
@@ -773,7 +774,7 @@ class PassengerHomePage extends StatelessWidget {
 
       case "Book Ticket":
         Navigator.push(context,
-            MaterialPageRoute(builder: (_) => BookTicketScreen()));
+            MaterialPageRoute(builder: (_) => SearchBusStopScreen()));
         break;
 
       case "Live Timing":
@@ -962,7 +963,6 @@ class PassengerHomePage extends StatelessWidget {
 
                   const SizedBox(height: 25),
 
-                  // Quick Actions title
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 16.0),
                     child: Text(
@@ -1004,9 +1004,7 @@ class PassengerHomePage extends StatelessWidget {
         ],
       ),
 
-      // ------------------------------------------------------
-      // ⭐ Updated Bottom Navigation Bar
-      // ------------------------------------------------------
+     
       bottomNavigationBar: BottomNavigationBar(
         selectedItemColor: MyApp.primaryColor,
         unselectedItemColor: Colors.grey,
